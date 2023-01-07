@@ -149,7 +149,7 @@ acpi_find_table(const char *sign) {
         if (!strncmp(head->Signature, sign, 4))
             return head;
     }
-    
+
     return NULL;
 }
 

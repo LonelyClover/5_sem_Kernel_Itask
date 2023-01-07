@@ -24,6 +24,11 @@
 
 #include <LoaderParams.h>
 
+// upulua
+#include "../UDK/OpenCorePkg/Include/Acidanthera/Library/OcAcpiLib.h"
+// upulua
+
+
 ///
 /// Kernel path.
 ///
@@ -37,9 +42,8 @@
   @retval EFI_SUCCESS on success.
 **/
 EFI_STATUS
-GenerateGateData (
-  OUT VOID **GateData
-  );
+GenerateGateData(
+        OUT VOID **GateData);
 
 /**
   Call kernel through architecture gate.
@@ -50,21 +54,17 @@ GenerateGateData (
   @param[in]  GateData       Arch kernel call gate data.
 **/
 VOID
-EFIAPI
-CallKernelThroughGate (
-  IN UINTN          EntryPoint,
-  IN LOADER_PARAMS  *LoaderParams,
-  IN VOID           *GateData
-  );
+        EFIAPI
+        CallKernelThroughGate(
+                IN UINTN EntryPoint,
+                IN LOADER_PARAMS *LoaderParams,
+                IN VOID *GateData);
 
 /**
   Kernel entry point prototype.
 **/
-typedef
-VOID
-(EFIAPI *KERNEL_ENTRY) (
-  IN LOADER_PARAMS  *LoaderParams,
-  IN VOID           *GateData
-  );
+typedef VOID(EFIAPI *KERNEL_ENTRY)(
+        IN LOADER_PARAMS *LoaderParams,
+        IN VOID *GateData);
 
 #endif // BOOTLOADER_H
