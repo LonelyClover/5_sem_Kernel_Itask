@@ -9,6 +9,8 @@
 #include "Bootloader.h"
 #include "VirtualMemory.h"
 
+#include "../../acpica/source/include/all.h"
+
 VOID *
 AllocateLowRuntimePool(
         IN UINTN Size) {
@@ -971,7 +973,6 @@ UefiMain(
 
     // upulua
     EFI_ACPI_6_2_ROOT_SYSTEM_DESCRIPTION_POINTER rsdp = *((EFI_ACPI_6_2_ROOT_SYSTEM_DESCRIPTION_POINTER *)(UINTN)(LoaderParams->ACPIRoot));
-
     OC_ACPI_6_2_EXTENDED_SYSTEM_DESCRIPTION_TABLE *xsdt = ((OC_ACPI_6_2_EXTENDED_SYSTEM_DESCRIPTION_TABLE *)(UINTN)(rsdp.XsdtAddress));
     UINT8 sum = 0;
     for (UINTN i = 0; i < xsdt->Header.Length; i++) {
@@ -994,6 +995,8 @@ UefiMain(
     EFI_ACPI_DESCRIPTION_HEADER *dsdt = (EFI_ACPI_DESCRIPTION_HEADER *)(UINTN)(dsdt_phys);
     if (EFI_ACPI_6_2_DIFFERENTIATED_SYSTEM_DESCRIPTION_TABLE_SIGNATURE == dsdt->Signature)
         DEBUG((DEBUG_INFO, "Hooray!\n"));
+
+
     // upulua
 
 
